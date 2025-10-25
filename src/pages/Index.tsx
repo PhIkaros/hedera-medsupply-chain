@@ -54,23 +54,24 @@ const Index = () => {
               <span className="text-foreground">des Médicaments</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-              Authentifiez chaque médicament grâce à la technologie Hedera.
-              <br />
-              <span className="text-foreground font-semibold">Protection garantie contre la contrefaçon.</span>
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Une plateforme révolutionnaire pour combattre la contrefaçon pharmaceutique en Afrique. 
+              Chaque médicament est authentifié via la blockchain Hedera Hashgraph et analysé par intelligence artificielle 
+              pour garantir <span className="text-foreground font-semibold">l'authenticité et la sécurité de chaque traitement</span>.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <Link to="/process">
+              <Link to="/scanner">
                 <Button size="lg" className="group bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_30px_rgba(0,255,191,0.3)] hover:shadow-[0_0_40px_rgba(0,255,191,0.5)] transition-all">
-                  Découvrir l'expertise
+                  <Scan className="mr-2 h-5 w-5" />
+                  Scanner un médicament
                   <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Link to="/scanner">
+              <Link to="/auth">
                 <Button size="lg" variant="outline" className="border-secondary text-secondary hover:bg-secondary/10 shadow-[0_0_20px_rgba(0,227,248,0.2)]">
-                  <Scan className="mr-2 h-5 w-5" />
-                  Scanner un médicament
+                  <Shield className="mr-2 h-5 w-5" />
+                  Accès Admin
                 </Button>
               </Link>
             </div>

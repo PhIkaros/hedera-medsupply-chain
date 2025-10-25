@@ -10,6 +10,7 @@ import Process from "./pages/Process";
 import Statistics from "./pages/Statistics";
 import Profile from "./pages/Profile";
 import Contact from "./pages/Contact";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/auth" element={<Auth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
