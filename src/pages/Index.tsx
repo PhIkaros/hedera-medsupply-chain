@@ -55,9 +55,7 @@ const Index = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Une plateforme révolutionnaire pour combattre la contrefaçon pharmaceutique en Afrique. 
-              Chaque médicament est authentifié via la blockchain Hedera Hashgraph et analysé par intelligence artificielle 
-              pour garantir <span className="text-foreground font-semibold">l'authenticité et la sécurité de chaque traitement</span>.
+            Authentifiez chaque médicament grâce à la technologie Hedera.<span className="text-foreground font-semibold">Protection garantie contre la contrefaçon.</span>.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
