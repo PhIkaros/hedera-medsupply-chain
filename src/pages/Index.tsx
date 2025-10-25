@@ -55,7 +55,7 @@ const Index = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Authentifiez chaque médicament grâce à la technologie Hedera. <br>
+            Authentifiez chaque médicament grâce à la technologie Hedera. 
               <span className="text-foreground font-semibold">Protection garantie contre la contrefaçon.</span>.
             </p>
             
