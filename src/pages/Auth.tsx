@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useContext, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import { Card } from "@/components/ui/card";
@@ -8,9 +8,11 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Shield, Mail, Lock, User } from "lucide-react";
 import { toast } from "sonner";
+import {Context} from "@/App.tsx";
 
 const Auth = () => {
   const navigate = useNavigate();
+  const {isConnected, setIsConnected} = useContext(Context);
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [signupData, setSignupData] = useState({
     name: "",
@@ -29,6 +31,7 @@ const Auth = () => {
 
     // Simulation de connexion
     toast.success("Connexion réussie !");
+    setIsConnected(true);
     setTimeout(() => navigate("/dashboard"), 1000);
   };
 
@@ -47,6 +50,7 @@ const Auth = () => {
 
     // Simulation d'inscription
     toast.success("Compte créé avec succès !");
+    setIsConnected(true);
     setTimeout(() => navigate("/dashboard"), 1000);
   };
 
@@ -61,10 +65,10 @@ const Auth = () => {
               <Shield className="h-8 w-8 text-primary animate-glow" />
             </div>
             <h1 className="text-4xl font-bold mb-2">
-              <span className="text-primary">Accès</span> Admin
+              <span className="text-primary">Accès</span> au votre profile
             </h1>
             <p className="text-muted-foreground">
-              Connectez-vous pour gérer la traçabilité des médicaments
+              Connectez-vous
             </p>
           </div>
 
@@ -84,7 +88,7 @@ const Auth = () => {
                       <Input
                         id="login-email"
                         type="email"
-                        placeholder="admin@medsupply.com"
+                        placeholder="exemple@gmail.com"
                         className="pl-10 bg-background"
                         value={loginData.email}
                         onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
@@ -140,7 +144,7 @@ const Auth = () => {
                       <Input
                         id="signup-email"
                         type="email"
-                        placeholder="admin@medsupply.com"
+                        placeholder="exemple@gmail.com"
                         className="pl-10 bg-background"
                         value={signupData.email}
                         onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}

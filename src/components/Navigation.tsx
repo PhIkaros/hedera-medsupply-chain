@@ -1,21 +1,34 @@
-import { useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Shield, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {Context} from "@/App.tsx";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {isConnected, setIsConnected} = useContext(Context);
+  const [navItems, setNavItems] = useState([
+      { path: "/", label: "Accueil" },
+      { path: "/process", label: "Processus" },
+      { path: "/contact", label: "Contact" },
+      { path: "/auth", label: "Sign up" },
+  ]);
   const location = useLocation();
 
-  const navItems = [
-    { path: "/", label: "Accueil" },
-    { path: "/dashboard", label: "Dashboard" },
-    { path: "/scanner", label: "Scanner" },
-    { path: "/process", label: "Processus" },
-    { path: "/statistics", label: "Statistiques" },
-    { path: "/profile", label: "Profil" },
-    { path: "/contact", label: "Contact" },
-  ];
+  useEffect(() => {
+      if (isConnected === true) {
+          setNavItems([
+              {path: "/", label: "Accueil"},
+              {path: "/dashboard", label: "Dashboard"},
+              {path: "/scanner", label: "Scanner"},
+              {path: "/process", label: "Processus"},
+              {path: "/statistics", label: "Statistiques"},
+              {path: "/profile", label: "Profil"},
+              {path: "/contact", label: "Contact"},
+              {path: "/logout", label: "Log out"},
+          ])
+      }
+  }, [isConnected]);
 
   const isActive = (path: string) => location.pathname === path;
 
