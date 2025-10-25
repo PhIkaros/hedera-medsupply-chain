@@ -42,7 +42,7 @@ const Index = () => {
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <div className="inline-block">
               <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium backdrop-blur-sm animate-float">
-                🔬 Technologie Hedera Hashgraph
+                 Technologie Hedera Hashgraph
               </span>
             </div>
             
@@ -146,7 +146,7 @@ const Index = () => {
       <footer className="py-8 px-4 border-t border-border">
         <div className="container mx-auto text-center">
           <p className="text-muted-foreground">
-            © 2025 MedSupply Chain • Powered by <span className="text-primary font-semibold">Hedera Hashgraph</span> 🟣
+            © 2025 MedSupply Chain • Powered by <span className="text-primary font-semibold">Hedera Hashgraph</span> 
           </p>
           <p className="text-sm text-muted-foreground mt-2">
             Sécurité pharmaceutique en Afrique
