@@ -286,63 +286,39 @@ const Profile = () => {
                     </>
                   )}
 
-                  {userRole === "Administrateur" && (
-                    <>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                            <Activity className="h-5 w-5 text-primary" />
-                          </div>
-                          <div>
-                            <p className="text-sm text-muted-foreground">Actions</p>
-                            <p className="text-xl font-bold">156</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
-                            <Shield className="h-5 w-5 text-secondary" />
-                          </div>
-                          <div>
-                            <p className="text-sm text-muted-foreground">Vérifications</p>
-                            <p className="text-xl font-bold">89</p>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-         {/* Activity History */}
-          <Card className="mt-6 p-8 bg-card/50 backdrop-blur-sm border-border">
-            <h3 className="text-xl font-bold mb-6">Historique d'activité</h3>
-            <div className="space-y-4">
-              {activities.map((activity, index) => (
-                <div 
-                  key={index}
-                  className="flex items-start gap-4 p-4 rounded-lg bg-background/50 border border-border hover:border-primary/30 transition-colors"
-                >
-                  <div className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
-                    activity.status === "success" ? "bg-primary/20" : "bg-destructive/20"
-                  }`}>
-                    {activity.status === "success" ? (
-                      <Activity className="h-5 w-5 text-primary" />
-                    ) : (
-                      <Shield className="h-5 w-5 text-destructive" />
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-semibold mb-1">{activity.action}</h4>
-                    <p className="text-sm text-muted-foreground">{activity.details}</p>
-                  </div>
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">
-                    {activity.time}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </Card>
-                  )}
-                </div>
-              </Card>
+                 {/* Historique d'activité - visible uniquement pour l'administrateur */}
+{userRole === "Administrateur" && (
+  <Card className="mt-6 p-8 bg-card/50 backdrop-blur-sm border-border">
+    <h3 className="text-xl font-bold mb-6">Historique d'activité</h3>
+    <div className="space-y-4">
+      {activities.map((activity, index) => (
+        <div
+          key={index}
+          className="flex items-start gap-4 p-4 rounded-lg bg-background/50 border border-border hover:border-primary/30 transition-colors"
+        >
+          <div
+            className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
+              activity.status === "success" ? "bg-primary/20" : "bg-destructive/20"
+            }`}
+          >
+            {activity.status === "success" ? (
+              <Activity className="h-5 w-5 text-primary" />
+            ) : (
+              <Shield className="h-5 w-5 text-destructive" />
+            )}
+          </div>
+          <div className="flex-1">
+            <h4 className="font-semibold mb-1">{activity.action}</h4>
+            <p className="text-sm text-muted-foreground">{activity.details}</p>
+          </div>
+          <span className="text-sm text-muted-foreground whitespace-nowrap">
+            {activity.time}
+          </span>
+        </div>
+      ))}
+    </div>
+  </Card>
+)}
 
               <Card className="p-6 bg-gradient-to-br from-primary/10 via-card to-secondary/10 border-primary/20 backdrop-blur-sm">
                 <div className="text-center">
