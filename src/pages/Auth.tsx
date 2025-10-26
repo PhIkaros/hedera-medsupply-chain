@@ -286,7 +286,7 @@ const Auth = () => {
 
           <Card className="mt-6 p-4 bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20 backdrop-blur-sm text-center">
             <p className="text-sm text-muted-foreground">
-              🔒 Connexion sécurisée via <span className="text-primary font-semibold">Hedera Hashgraph</span>
+               Connexion sécurisée via <span className="text-primary font-semibold">Hedera Hashgraph</span>
             </p>
           </Card>
         </div>
