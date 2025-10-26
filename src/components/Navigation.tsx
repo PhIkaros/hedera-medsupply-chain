@@ -86,7 +86,7 @@ const Navigation = () => {
               <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 MedSupply Chain
               </span>
-              <p className="text-xs text-muted-foreground">Powered by Hedera 🟣</p>
+              <p className="text-xs text-muted-foreground">Powered by Hedera Ħ</p>
             </div>
           </Link>
 
