@@ -154,7 +154,7 @@ const Contact = () => {
                     <Shield className="h-8 w-8 text-primary" />
                   </div>
                   <h3 className="text-lg font-bold mb-2">Expert Pharmaceutique</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Certifié Hedera 🟣</p>
+                  <p className="text-sm text-muted-foreground mb-4">Certifié Hedera Ħ</p>
                   <p className="text-xs text-muted-foreground">
                     Notre équipe est certifiée pour garantir la sécurité et la traçabilité des médicaments
                   </p>
