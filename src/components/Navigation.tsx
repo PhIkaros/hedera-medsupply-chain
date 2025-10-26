@@ -6,7 +6,7 @@ import {Context} from "@/App.tsx";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const {isConnected, setIsConnected} = useContext(Context);
+  const {isConnected, userRole} = useContext(Context);
   const [navItems, setNavItems] = useState([
       { path: "/", label: "Accueil" },
       { path: "/process", label: "Processus" },
@@ -16,8 +16,10 @@ const Navigation = () => {
   const location = useLocation();
 
   useEffect(() => {
-      if (isConnected === true) {
-          setNavItems([
+      if (isConnected === true && userRole) {
+          // Menu selon le rôle
+          const roleMenus: Record<string, any[]> = {
+            "Administrateur": [
               {path: "/", label: "Accueil"},
               {path: "/dashboard", label: "Dashboard"},
               {path: "/scanner", label: "Scanner"},
@@ -26,9 +28,43 @@ const Navigation = () => {
               {path: "/profile", label: "Profil"},
               {path: "/contact", label: "Contact"},
               {path: "/logout", label: "Log out"},
-          ])
+            ],
+            "Fabricant": [
+              {path: "/", label: "Accueil"},
+              {path: "/fabricant", label: "Mes lots"},
+              {path: "/process", label: "Processus"},
+              {path: "/profile", label: "Profil"},
+              {path: "/contact", label: "Contact"},
+              {path: "/logout", label: "Log out"},
+            ],
+            "Distributeur": [
+              {path: "/", label: "Accueil"},
+              {path: "/distributeur", label: "Livraisons"},
+              {path: "/process", label: "Processus"},
+              {path: "/profile", label: "Profil"},
+              {path: "/contact", label: "Contact"},
+              {path: "/logout", label: "Log out"},
+            ],
+            "Pharmacien": [
+              {path: "/", label: "Accueil"},
+              {path: "/pharmacien", label: "Vérifications"},
+              {path: "/process", label: "Processus"},
+              {path: "/profile", label: "Profil"},
+              {path: "/contact", label: "Contact"},
+              {path: "/logout", label: "Log out"},
+            ],
+            "Utilisateur": [
+              {path: "/", label: "Accueil"},
+              {path: "/patient", label: "Scanner"},
+              {path: "/process", label: "Processus"},
+              {path: "/contact", label: "Contact"},
+              {path: "/logout", label: "Log out"},
+            ],
+          };
+          
+          setNavItems(roleMenus[userRole] || navItems);
       }
-  }, [isConnected]);
+  }, [isConnected, userRole]);
 
   const isActive = (path: string) => location.pathname === path;
 

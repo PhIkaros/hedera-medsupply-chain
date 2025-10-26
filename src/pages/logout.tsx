@@ -6,8 +6,9 @@ export default function Logout() {
 
     const navigate = useNavigate();
 
-    const {isConnected, setIsConnected} = useContext(Context);
+    const {setIsConnected, setUserRole} = useContext(Context);
     setIsConnected(false);
+    setUserRole(null);
     navigate('/');
 
     return (<></>)

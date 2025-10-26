@@ -12,13 +12,14 @@ import {Context} from "@/App.tsx";
 
 const Auth = () => {
   const navigate = useNavigate();
-  const {isConnected, setIsConnected} = useContext(Context);
+  const {isConnected, setIsConnected, setUserRole} = useContext(Context);
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [signupData, setSignupData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
+    role: "Utilisateur",
   });
 
   const handleLogin = (e: React.FormEvent) => {
@@ -29,9 +30,10 @@ const Auth = () => {
       return;
     }
 
-    // Simulation de connexion
+    // Simulation de connexion (par défaut, on suppose un admin)
     toast.success("Connexion réussie !");
     setIsConnected(true);
+    setUserRole("Administrateur");
     setTimeout(() => navigate("/dashboard"), 1000);
   };
 
@@ -48,10 +50,21 @@ const Auth = () => {
       return;
     }
 
-    // Simulation d'inscription
+    // Simulation d'inscription avec redirection selon le rôle
     toast.success("Compte créé avec succès !");
     setIsConnected(true);
-    setTimeout(() => navigate("/dashboard"), 1000);
+    setUserRole(signupData.role);
+    
+    // Redirection selon le rôle
+    const roleRoutes: Record<string, string> = {
+      "Administrateur": "/dashboard",
+      "Fabricant": "/fabricant",
+      "Distributeur": "/distributeur",
+      "Pharmacien": "/pharmacien",
+      "Utilisateur": "/patient"
+    };
+    
+    setTimeout(() => navigate(roleRoutes[signupData.role] || "/"), 1000);
   };
 
   return (
@@ -182,7 +195,26 @@ const Auth = () => {
                     </div>
                   </div>
 
-                  <Button 
+                  <div>
+                    <Label htmlFor="signup-role">Rôle</Label>
+                    <div className="relative">
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                      <select
+                        id="signup-role"
+                        className="w-full pl-10 pr-3 py-2 bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-foreground"
+                        value={signupData.role}
+                        onChange={(e) => setSignupData({ ...signupData, role: e.target.value })}
+                      >
+                        <option value="Utilisateur">Utilisateur (Patient)</option>
+                        <option value="Fabricant">Fabricant</option>
+                        <option value="Distributeur">Distributeur</option>
+                        <option value="Pharmacien">Pharmacien</option>
+                        <option value="Administrateur">Administrateur</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <Button
                     type="submit"
                     className="w-full bg-primary hover:bg-primary/90 shadow-[0_0_20px_rgba(0,255,191,0.3)]"
                   >

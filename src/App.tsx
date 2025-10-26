@@ -14,6 +14,10 @@ import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import {createContext, useState} from "react";
 import Logout from "@/pages/logout.tsx";
+import Fabricant from "./pages/Fabricant";
+import Distributeur from "./pages/Distributeur";
+import Pharmacien from "./pages/Pharmacien";
+import Patient from "./pages/Patient";
 
 const queryClient = new QueryClient();
 export const Context = createContext(undefined);
@@ -21,9 +25,10 @@ export const Context = createContext(undefined);
 const App = () => {
 
     const [isConnected, setIsConnected] = useState(false);
+    const [userRole, setUserRole] = useState<string | null>(null);
 
     return (
-        <Context.Provider value={{isConnected, setIsConnected}} >
+        <Context.Provider value={{isConnected, setIsConnected, userRole, setUserRole}} >
             <QueryClientProvider client={queryClient}>
                 <TooltipProvider>
                     <Toaster/>
@@ -39,6 +44,10 @@ const App = () => {
                             <Route path="/contact" element={<Contact/>}/>
                             <Route path="/auth" element={<Auth/>}/>
                             <Route path="/logout" element={<Logout/>}/>
+                            <Route path="/fabricant" element={<Fabricant/>}/>
+                            <Route path="/distributeur" element={<Distributeur/>}/>
+                            <Route path="/pharmacien" element={<Pharmacien/>}/>
+                            <Route path="/patient" element={<Patient/>}/>
                             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                             <Route path="*" element={<NotFound/>}/>
                         </Routes>
