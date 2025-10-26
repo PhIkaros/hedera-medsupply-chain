@@ -5,17 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import {
-  User,
-  Mail,
-  Shield,
-  Activity,
-  Edit,
-  Building,
-  Truck,
-  MapPin,
-  Package,
-} from "lucide-react";
+import { User, Mail, Shield, Activity, Edit, Building, Truck, MapPin, Package } from "lucide-react";
 import { toast } from "sonner";
 import { Context } from "@/App";
 
@@ -72,16 +62,14 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-
+      
       <main className="pt-28 pb-12 px-4">
         <div className="container mx-auto max-w-5xl">
           <div className="mb-8">
             <h1 className="text-4xl font-bold mb-2">
               Mon <span className="text-primary">Profil</span>
             </h1>
-            <p className="text-muted-foreground">
-              Gérez vos informations personnelles
-            </p>
+            <p className="text-muted-foreground">Gérez vos informations personnelles</p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-6">
@@ -91,10 +79,7 @@ const Profile = () => {
                 <div className="flex items-center gap-4">
                   <Avatar className="h-20 w-20 border-2 border-primary shadow-[0_0_20px_rgba(0,255,191,0.3)]">
                     <AvatarFallback className="bg-primary/20 text-primary text-2xl font-bold">
-                      {profile.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
+                      {profile.name.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
                   <div>
@@ -102,7 +87,7 @@ const Profile = () => {
                     <p className="text-muted-foreground">{profile.role}</p>
                   </div>
                 </div>
-
+                
                 {!isEditing && (
                   <Button
                     onClick={() => setIsEditing(true)}
@@ -120,9 +105,7 @@ const Profile = () => {
                   <Input
                     id="name"
                     value={isEditing ? editedProfile.name : profile.name}
-                    onChange={(e) =>
-                      setEditedProfile({ ...editedProfile, name: e.target.value })
-                    }
+                    onChange={(e) => setEditedProfile({ ...editedProfile, name: e.target.value })}
                     disabled={!isEditing}
                     className="bg-background"
                   />
@@ -134,12 +117,7 @@ const Profile = () => {
                     id="email"
                     type="email"
                     value={isEditing ? editedProfile.email : profile.email}
-                    onChange={(e) =>
-                      setEditedProfile({
-                        ...editedProfile,
-                        email: e.target.value,
-                      })
-                    }
+                    onChange={(e) => setEditedProfile({ ...editedProfile, email: e.target.value })}
                     disabled={!isEditing}
                     className="bg-background"
                   />
@@ -157,27 +135,14 @@ const Profile = () => {
 
                 <div>
                   <Label htmlFor="organization">
-                    {userRole === "Fabricant"
-                      ? "Entreprise"
-                      : userRole === "Distributeur"
-                      ? "Société de transport"
-                      : userRole === "Pharmacien"
-                      ? "Pharmacie"
-                      : "Organisation"}
+                    {userRole === "Fabricant" ? "Entreprise" : 
+                     userRole === "Distributeur" ? "Société de transport" :
+                     userRole === "Pharmacien" ? "Pharmacie" : "Organisation"}
                   </Label>
                   <Input
                     id="organization"
-                    value={
-                      isEditing
-                        ? editedProfile.organization
-                        : profile.organization
-                    }
-                    onChange={(e) =>
-                      setEditedProfile({
-                        ...editedProfile,
-                        organization: e.target.value,
-                      })
-                    }
+                    value={isEditing ? editedProfile.organization : profile.organization}
+                    onChange={(e) => setEditedProfile({ ...editedProfile, organization: e.target.value })}
                     disabled={!isEditing}
                     className="bg-background"
                   />
@@ -197,10 +162,7 @@ const Profile = () => {
 
                 {isEditing && (
                   <div className="flex gap-3 pt-4">
-                    <Button
-                      onClick={handleSave}
-                      className="bg-primary hover:bg-primary/90"
-                    >
+                    <Button onClick={handleSave} className="bg-primary hover:bg-primary/90">
                       Enregistrer
                     </Button>
                     <Button onClick={handleCancel} variant="outline">
@@ -224,9 +186,7 @@ const Profile = () => {
                             <Package className="h-5 w-5 text-primary" />
                           </div>
                           <div>
-                            <p className="text-sm text-muted-foreground">
-                              Lots produits
-                            </p>
+                            <p className="text-sm text-muted-foreground">Lots produits</p>
                             <p className="text-xl font-bold">247</p>
                           </div>
                         </div>
@@ -237,16 +197,14 @@ const Profile = () => {
                             <Shield className="h-5 w-5 text-secondary" />
                           </div>
                           <div>
-                            <p className="text-sm text-muted-foreground">
-                              Statut Hedera
-                            </p>
+                            <p className="text-sm text-muted-foreground">Statut Hedera</p>
                             <p className="text-xl font-bold">✅ Vérifié</p>
                           </div>
                         </div>
                       </div>
                     </>
                   )}
-
+                  
                   {userRole === "Distributeur" && (
                     <>
                       <div className="flex items-center justify-between">
@@ -255,9 +213,7 @@ const Profile = () => {
                             <Truck className="h-5 w-5 text-primary" />
                           </div>
                           <div>
-                            <p className="text-sm text-muted-foreground">
-                              Lots en transit
-                            </p>
+                            <p className="text-sm text-muted-foreground">Lots en transit</p>
                             <p className="text-xl font-bold">42</p>
                           </div>
                         </div>
@@ -268,9 +224,7 @@ const Profile = () => {
                             <Shield className="h-5 w-5 text-secondary" />
                           </div>
                           <div>
-                            <p className="text-sm text-muted-foreground">
-                              Vérifications
-                            </p>
+                            <p className="text-sm text-muted-foreground">Vérifications</p>
                             <p className="text-xl font-bold">156</p>
                           </div>
                         </div>
@@ -286,9 +240,7 @@ const Profile = () => {
                             <Package className="h-5 w-5 text-primary" />
                           </div>
                           <div>
-                            <p className="text-sm text-muted-foreground">
-                              Médicaments reçus
-                            </p>
+                            <p className="text-sm text-muted-foreground">Médicaments reçus</p>
                             <p className="text-xl font-bold">389</p>
                           </div>
                         </div>
@@ -299,9 +251,7 @@ const Profile = () => {
                             <Shield className="h-5 w-5 text-secondary" />
                           </div>
                           <div>
-                            <p className="text-sm text-muted-foreground">
-                              Vérifications
-                            </p>
+                            <p className="text-sm text-muted-foreground">Vérifications</p>
                             <p className="text-xl font-bold">389</p>
                           </div>
                         </div>
@@ -317,9 +267,7 @@ const Profile = () => {
                             <Activity className="h-5 w-5 text-primary" />
                           </div>
                           <div>
-                            <p className="text-sm text-muted-foreground">
-                              Scans effectués
-                            </p>
+                            <p className="text-sm text-muted-foreground">Scans effectués</p>
                             <p className="text-xl font-bold">23</p>
                           </div>
                         </div>
@@ -330,9 +278,7 @@ const Profile = () => {
                             <Shield className="h-5 w-5 text-secondary" />
                           </div>
                           <div>
-                            <p className="text-sm text-muted-foreground">
-                              Vérifications
-                            </p>
+                            <p className="text-sm text-muted-foreground">Vérifications</p>
                             <p className="text-xl font-bold">23</p>
                           </div>
                         </div>
@@ -348,9 +294,7 @@ const Profile = () => {
                             <Activity className="h-5 w-5 text-primary" />
                           </div>
                           <div>
-                            <p className="text-sm text-muted-foreground">
-                              Actions
-                            </p>
+                            <p className="text-sm text-muted-foreground">Actions</p>
                             <p className="text-xl font-bold">156</p>
                           </div>
                         </div>
@@ -361,63 +305,44 @@ const Profile = () => {
                             <Shield className="h-5 w-5 text-secondary" />
                           </div>
                           <div>
-                            <p className="text-sm text-muted-foreground">
-                              Vérifications
-                            </p>
+                            <p className="text-sm text-muted-foreground">Vérifications</p>
                             <p className="text-xl font-bold">89</p>
                           </div>
                         </div>
                       </div>
                     </>
+         {/* Activity History */}
+          <Card className="mt-6 p-8 bg-card/50 backdrop-blur-sm border-border">
+            <h3 className="text-xl font-bold mb-6">Historique d'activité</h3>
+            <div className="space-y-4">
+              {activities.map((activity, index) => (
+                <div 
+                  key={index}
+                  className="flex items-start gap-4 p-4 rounded-lg bg-background/50 border border-border hover:border-primary/30 transition-colors"
+                >
+                  <div className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
+                    activity.status === "success" ? "bg-primary/20" : "bg-destructive/20"
+                  }`}>
+                    {activity.status === "success" ? (
+                      <Activity className="h-5 w-5 text-primary" />
+                    ) : (
+                      <Shield className="h-5 w-5 text-destructive" />
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold mb-1">{activity.action}</h4>
+                    <p className="text-sm text-muted-foreground">{activity.details}</p>
+                  </div>
+                  <span className="text-sm text-muted-foreground whitespace-nowrap">
+                    {activity.time}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </Card>
                   )}
                 </div>
               </Card>
-
-              {/* ---------- FIX 2: Admin-only wrapper added ---------- */}
-              {userRole === "Administrateur" && (
-                <Card className="mt-6 p-8 bg-card/50 backdrop-blur-sm border-border">
-                  <h3 className="text-xl font-bold mb-6">
-                    Historique d'activité
-                  </h3>
-                  <div className="space-y-4">
-                    {/* ---------- FIX 1: Key changed back to index ---------- */}
-                    {activities.map((activity, index) => (
-                      <div
-                        // Your activities objects don't have 'id'
-                        // Using 'index' is fine for a static list.
-                        key={index}
-                        className="flex items-start gap-4 p-4 rounded-lg bg-background/50 border border-border hover:border-primary/30 transition-colors"
-                      >
-                        <div
-                          className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
-                            activity.status === "success"
-                              ? "bg-primary/20"
-                              : "bg-destructive/20"
-                          }`}
-                        >
-                          {activity.status === "success" ? (
-                            <Activity className="h-5 w-5 text-primary" />
-                          ) : (
-                            <Shield className="h-5 w-5 text-destructive" />
-                          )}
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold mb-1">
-                            {activity.action}
-                          </h4>
-                          <p className="text-sm text-muted-foreground">
-                            {activity.details}
-                          </p>
-                        </div>
-                        <span className="text-sm text-muted-foreground whitespace-nowrap">
-                          {activity.time}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </Card>
-              )}
-              {/* ---------- End of fixes ---------- */}
 
               <Card className="p-6 bg-gradient-to-br from-primary/10 via-card to-secondary/10 border-primary/20 backdrop-blur-sm">
                 <div className="text-center">
@@ -425,28 +350,24 @@ const Profile = () => {
                     <Shield className="h-6 w-6 text-primary animate-glow" />
                   </div>
                   <h3 className="text-lg font-bold mb-2">
-                    {userRole === "Fabricant"
-                      ? "Fabricant Certifié"
-                      : userRole === "Distributeur"
-                      ? "Distributeur Vérifié"
-                      : userRole === "Pharmacien"
-                      ? "Pharmacie Certifiée"
-                      : userRole === "Utilisateur"
-                      ? "Utilisateur Vérifié"
-                      : "Expert Pharmaceutique"}
+                    {userRole === "Fabricant" ? "Fabricant Certifié" :
+                     userRole === "Distributeur" ? "Distributeur Vérifié" :
+                     userRole === "Pharmacien" ? "Pharmacie Certifiée" :
+                     userRole === "Utilisateur" ? "Utilisateur Vérifié" :
+                     "Expert Pharmaceutique"}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Certifié Hedera
-                  </p>
+                  <p className="text-sm text-muted-foreground">Certifié Hedera</p>
                 </div>
               </Card>
             </div>
           </div>
 
+       
+
           {/* Powered by Hedera */}
           <div className="text-center mt-8">
             <p className="text-sm text-muted-foreground">
-              Powered by <span className="text-primary font-semibold">Hedera</span>
+              🟣 Powered by <span className="text-primary font-semibold">Hedera</span>
             </p>
           </div>
         </div>
