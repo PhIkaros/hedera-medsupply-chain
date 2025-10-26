@@ -12,7 +12,7 @@ import {Context} from "@/App.tsx";
 
 const Auth = () => {
   const navigate = useNavigate();
-  const {isConnected, setIsConnected, setUserRole} = useContext(Context);
+  const {isConnected, setIsConnected, setUserRole, setUserName, setUserEmail, setUserOrganization} = useContext(Context);
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [signupData, setSignupData] = useState({
     name: "",
@@ -20,6 +20,7 @@ const Auth = () => {
     password: "",
     confirmPassword: "",
     role: "Utilisateur",
+    organization: "",
   });
 
   const handleLogin = (e: React.FormEvent) => {
@@ -30,11 +31,31 @@ const Auth = () => {
       return;
     }
 
-    // Simulation de connexion (par défaut, on suppose un admin)
+    // Pour la démo, on utilise les données stockées lors de l'inscription
+    const storedName = localStorage.getItem("userName") || "Utilisateur";
+    const storedRole = localStorage.getItem("userRole") || "Administrateur";
+    const storedOrganization = localStorage.getItem("userOrganization") || "";
+    
+    setUserName(storedName);
+    setUserEmail(loginData.email);
+    setUserRole(storedRole);
+    setUserOrganization(storedOrganization);
+
     toast.success("Connexion réussie !");
+    localStorage.setItem("isConnected", "true");
+    localStorage.setItem("userEmail", loginData.email);
     setIsConnected(true);
-    setUserRole("Administrateur");
-    setTimeout(() => navigate("/dashboard"), 1000);
+
+    // Redirection selon le rôle
+    const roleRoutes: Record<string, string> = {
+      "Administrateur": "/dashboard",
+      "Fabricant": "/fabricant",
+      "Distributeur": "/distributeur",
+      "Pharmacien": "/pharmacien",
+      "Utilisateur": "/patient"
+    };
+    
+    setTimeout(() => navigate(roleRoutes[storedRole] || "/dashboard"), 1000);
   };
 
   const handleSignup = (e: React.FormEvent) => {
@@ -50,10 +71,20 @@ const Auth = () => {
       return;
     }
 
-    // Simulation d'inscription avec redirection selon le rôle
-    toast.success("Compte créé avec succès !");
+    // Stocker les informations utilisateur
+    localStorage.setItem("isConnected", "true");
+    localStorage.setItem("userRole", signupData.role);
+    localStorage.setItem("userName", signupData.name);
+    localStorage.setItem("userEmail", signupData.email);
+    localStorage.setItem("userOrganization", signupData.organization);
+    
     setIsConnected(true);
     setUserRole(signupData.role);
+    setUserName(signupData.name);
+    setUserEmail(signupData.email);
+    setUserOrganization(signupData.organization);
+
+    toast.success("Compte créé avec succès !");
     
     // Redirection selon le rôle
     const roleRoutes: Record<string, string> = {
@@ -213,6 +244,28 @@ const Auth = () => {
                       </select>
                     </div>
                   </div>
+
+                  {signupData.role !== "Utilisateur" && (
+                    <div>
+                      <Label htmlFor="signup-organization">
+                        {signupData.role === "Fabricant" ? "Entreprise" :
+                         signupData.role === "Distributeur" ? "Société de transport" :
+                         signupData.role === "Pharmacien" ? "Pharmacie" : "Organisation"}
+                      </Label>
+                      <Input
+                        id="signup-organization"
+                        placeholder={
+                          signupData.role === "Fabricant" ? "Ex: PharmaCorp Afrique" :
+                          signupData.role === "Distributeur" ? "Ex: TransMed Express" :
+                          signupData.role === "Pharmacien" ? "Ex: Pharmacie Centrale" :
+                          "Nom de votre organisation"
+                        }
+                        className="bg-background"
+                        value={signupData.organization}
+                        onChange={(e) => setSignupData({ ...signupData, organization: e.target.value })}
+                      />
+                    </div>
+                  )}
 
                   <Button
                     type="submit"

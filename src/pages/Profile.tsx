@@ -10,13 +10,13 @@ import { toast } from "sonner";
 import { Context } from "@/App";
 
 const Profile = () => {
-  const { userRole } = useContext(Context);
+  const { userRole, userName, userEmail, userOrganization } = useContext(Context);
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
-    name: "Dr. Amadou Diallo",
-    email: "amadou.diallo@medsupply.com",
+    name: userName || "Utilisateur",
+    email: userEmail || "user@example.com",
     role: userRole || "Administrateur",
-    organization: "PharmaCorp Afrique",
+    organization: userOrganization || "",
   });
 
   const [editedProfile, setEditedProfile] = useState(profile);

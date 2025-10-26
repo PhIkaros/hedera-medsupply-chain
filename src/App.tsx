@@ -24,11 +24,35 @@ export const Context = createContext(undefined);
 
 const App = () => {
 
-    const [isConnected, setIsConnected] = useState(false);
-    const [userRole, setUserRole] = useState<string | null>(null);
+    const [isConnected, setIsConnected] = useState(
+        localStorage.getItem("isConnected") === "true"
+    );
+    const [userRole, setUserRole] = useState<string | null>(
+        localStorage.getItem("userRole")
+    );
+    const [userName, setUserName] = useState(
+        localStorage.getItem("userName") || ""
+    );
+    const [userEmail, setUserEmail] = useState(
+        localStorage.getItem("userEmail") || ""
+    );
+    const [userOrganization, setUserOrganization] = useState(
+        localStorage.getItem("userOrganization") || ""
+    );
 
     return (
-        <Context.Provider value={{isConnected, setIsConnected, userRole, setUserRole}} >
+        <Context.Provider value={{
+            isConnected, 
+            setIsConnected, 
+            userRole, 
+            setUserRole,
+            userName,
+            setUserName,
+            userEmail,
+            setUserEmail,
+            userOrganization,
+            setUserOrganization
+        }} >
             <QueryClientProvider client={queryClient}>
                 <TooltipProvider>
                     <Toaster/>
