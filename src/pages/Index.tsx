@@ -42,7 +42,7 @@ const Index = () => {
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <div className="inline-block">
               <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium backdrop-blur-sm animate-float">
-                 Technologie Hedera Hashgraph
+                 Technologie Hedera Hashgraph Ħ
               </span>
             </div>
             
