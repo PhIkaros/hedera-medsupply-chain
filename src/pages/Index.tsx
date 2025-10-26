@@ -67,12 +67,7 @@ const Index = () => {
                   <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Link to="/auth">
-                <Button size="lg" variant="outline" className="border-secondary text-secondary hover:bg-secondary/10 shadow-[0_0_20px_rgba(0,227,248,0.2)]">
-                  <Shield className="mr-2 h-5 w-5" />
-                  Accès Admin
-                </Button>
-              </Link>
+         
             </div>
           </div>
         </div>
