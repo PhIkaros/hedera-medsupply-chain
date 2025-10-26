@@ -32,6 +32,7 @@ const Navigation = () => {
             "Fabricant": [
               {path: "/", label: "Accueil"},
               {path: "/fabricant", label: "Mes lots"},
+              {path: "/scanner", label: "Scanner"},
               {path: "/process", label: "Processus"},
               {path: "/profile", label: "Profil"},
               {path: "/contact", label: "Contact"},
@@ -40,6 +41,7 @@ const Navigation = () => {
             "Distributeur": [
               {path: "/", label: "Accueil"},
               {path: "/distributeur", label: "Livraisons"},
+              {path: "/scanner", label: "Scanner"},
               {path: "/process", label: "Processus"},
               {path: "/profile", label: "Profil"},
               {path: "/contact", label: "Contact"},
@@ -48,6 +50,7 @@ const Navigation = () => {
             "Pharmacien": [
               {path: "/", label: "Accueil"},
               {path: "/pharmacien", label: "Vérifications"},
+              {path: "/scanner", label: "Scanner"},
               {path: "/process", label: "Processus"},
               {path: "/profile", label: "Profil"},
               {path: "/contact", label: "Contact"},
@@ -55,7 +58,8 @@ const Navigation = () => {
             ],
             "Utilisateur": [
               {path: "/", label: "Accueil"},
-              {path: "/patient", label: "Scanner"},
+              {path: "/patient", label: "Mon espace"},
+              {path: "/scanner", label: "Scanner"},
               {path: "/process", label: "Processus"},
               {path: "/contact", label: "Contact"},
               {path: "/logout", label: "Log out"},

@@ -1,19 +1,21 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Navigation from "@/components/Navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { User, Mail, Shield, Activity, Edit } from "lucide-react";
+import { User, Mail, Shield, Activity, Edit, Building, Truck, MapPin, Package } from "lucide-react";
 import { toast } from "sonner";
+import { Context } from "@/App";
 
 const Profile = () => {
+  const { userRole } = useContext(Context);
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
     name: "Dr. Amadou Diallo",
     email: "amadou.diallo@medsupply.com",
-    role: "Administrateur",
+    role: userRole || "Administrateur",
     organization: "PharmaCorp Afrique",
   });
 
@@ -132,7 +134,11 @@ const Profile = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="organization">Organisation</Label>
+                  <Label htmlFor="organization">
+                    {userRole === "Fabricant" ? "Entreprise" : 
+                     userRole === "Distributeur" ? "Société de transport" :
+                     userRole === "Pharmacien" ? "Pharmacie" : "Organisation"}
+                  </Label>
                   <Input
                     id="organization"
                     value={isEditing ? editedProfile.organization : profile.organization}
@@ -141,6 +147,18 @@ const Profile = () => {
                     className="bg-background"
                   />
                 </div>
+
+                {userRole === "Pharmacien" && (
+                  <div>
+                    <Label htmlFor="location">Localisation</Label>
+                    <Input
+                      id="location"
+                      placeholder="Ex: Dakar, Sénégal"
+                      disabled={!isEditing}
+                      className="bg-background"
+                    />
+                  </div>
+                )}
 
                 {isEditing && (
                   <div className="flex gap-3 pt-4">
@@ -160,29 +178,140 @@ const Profile = () => {
               <Card className="p-6 bg-card/50 backdrop-blur-sm border-border">
                 <h3 className="text-lg font-bold mb-4">Statistiques</h3>
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                        <Activity className="h-5 w-5 text-primary" />
+                  {userRole === "Fabricant" && (
+                    <>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                            <Package className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">Lots produits</p>
+                            <p className="text-xl font-bold">247</p>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">Actions</p>
-                        <p className="text-xl font-bold">156</p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
+                            <Shield className="h-5 w-5 text-secondary" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">Statut Hedera</p>
+                            <p className="text-xl font-bold">✅ Vérifié</p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
+                    </>
+                  )}
+                  
+                  {userRole === "Distributeur" && (
+                    <>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                            <Truck className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">Lots en transit</p>
+                            <p className="text-xl font-bold">42</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
+                            <Shield className="h-5 w-5 text-secondary" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">Vérifications</p>
+                            <p className="text-xl font-bold">156</p>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
-                        <Shield className="h-5 w-5 text-secondary" />
+                  {userRole === "Pharmacien" && (
+                    <>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                            <Package className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">Médicaments reçus</p>
+                            <p className="text-xl font-bold">389</p>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">Vérifications</p>
-                        <p className="text-xl font-bold">89</p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
+                            <Shield className="h-5 w-5 text-secondary" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">Vérifications</p>
+                            <p className="text-xl font-bold">389</p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
+                    </>
+                  )}
+
+                  {userRole === "Utilisateur" && (
+                    <>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                            <Activity className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">Scans effectués</p>
+                            <p className="text-xl font-bold">23</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
+                            <Shield className="h-5 w-5 text-secondary" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">Vérifications</p>
+                            <p className="text-xl font-bold">23</p>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {userRole === "Administrateur" && (
+                    <>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                            <Activity className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">Actions</p>
+                            <p className="text-xl font-bold">156</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
+                            <Shield className="h-5 w-5 text-secondary" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">Vérifications</p>
+                            <p className="text-xl font-bold">89</p>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </Card>
 
@@ -191,7 +320,13 @@ const Profile = () => {
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/20 mb-4">
                     <Shield className="h-6 w-6 text-primary animate-glow" />
                   </div>
-                  <h3 className="text-lg font-bold mb-2">Expert Pharmaceutique</h3>
+                  <h3 className="text-lg font-bold mb-2">
+                    {userRole === "Fabricant" ? "Fabricant Certifié" :
+                     userRole === "Distributeur" ? "Distributeur Vérifié" :
+                     userRole === "Pharmacien" ? "Pharmacie Certifiée" :
+                     userRole === "Utilisateur" ? "Utilisateur Vérifié" :
+                     "Expert Pharmaceutique"}
+                  </h3>
                   <p className="text-sm text-muted-foreground">Certifié Hedera</p>
                 </div>
               </Card>
@@ -227,6 +362,13 @@ const Profile = () => {
               ))}
             </div>
           </Card>
+
+          {/* Powered by Hedera */}
+          <div className="text-center mt-8">
+            <p className="text-sm text-muted-foreground">
+              🟣 Powered by <span className="text-primary font-semibold">Hedera</span>
+            </p>
+          </div>
         </div>
       </main>
     </div>
