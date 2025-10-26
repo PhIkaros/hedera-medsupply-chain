@@ -311,7 +311,29 @@ const Profile = () => {
                         </div>
                       </div>
                     </>
-         {/* Activity History */}
+                  )}
+                </div>
+              </Card>
+
+              <Card className="p-6 bg-gradient-to-br from-primary/10 via-card to-secondary/10 border-primary/20 backdrop-blur-sm">
+                <div className="text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/20 mb-4">
+                    <Shield className="h-6 w-6 text-primary animate-glow" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2">
+                    {userRole === "Fabricant" ? "Fabricant Certifié" :
+                     userRole === "Distributeur" ? "Distributeur Vérifié" :
+                     userRole === "Pharmacien" ? "Pharmacie Certifiée" :
+                     userRole === "Utilisateur" ? "Utilisateur Vérifié" :
+                     "Expert Pharmaceutique"}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">Certifié Hedera</p>
+                </div>
+              </Card>
+            </div>
+          </div>
+
+          {/* Activity History */}
           <Card className="mt-6 p-8 bg-card/50 backdrop-blur-sm border-border">
             <h3 className="text-xl font-bold mb-6">Historique d'activité</h3>
             <div className="space-y-4">
@@ -340,29 +362,6 @@ const Profile = () => {
               ))}
             </div>
           </Card>
-                  )}
-                </div>
-              </Card>
-
-              <Card className="p-6 bg-gradient-to-br from-primary/10 via-card to-secondary/10 border-primary/20 backdrop-blur-sm">
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/20 mb-4">
-                    <Shield className="h-6 w-6 text-primary animate-glow" />
-                  </div>
-                  <h3 className="text-lg font-bold mb-2">
-                    {userRole === "Fabricant" ? "Fabricant Certifié" :
-                     userRole === "Distributeur" ? "Distributeur Vérifié" :
-                     userRole === "Pharmacien" ? "Pharmacie Certifiée" :
-                     userRole === "Utilisateur" ? "Utilisateur Vérifié" :
-                     "Expert Pharmaceutique"}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">Certifié Hedera</p>
-                </div>
-              </Card>
-            </div>
-          </div>
-
-       
 
           {/* Powered by Hedera */}
           <div className="text-center mt-8">
