@@ -2,6 +2,9 @@ MedSupply Chain: Medicine Traceability using Hedera Hashgraph
 https://hedera-med-scan.lovable.app/
 
 presentation: https://www.canva.com/design/DAG3HnLnV0g/jIlI0nkUPxjmWO1kzsRRDQ/edit?utm_content=DAG3HnLnV0g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+pitch-deck ppt:
+https://www.canva.com/design/DAG3S-fjtDI/TJyati9LMJY9hTEpou-FcA/edit?utm_content=DAG3S-fjtDI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 
 Overview: MedSupply Chain is a Web3-powered solution that ensures the traceability and authenticity of medicines from factory to patient. By leveraging Hedera Hashgraph, each batch of medicine receives a unique, immutable identifier recorded on the ledger, allowing every stakeholder — manufacturers, distributors, pharmacies, and patients — to verify authenticity in real time.
 
