@@ -2,6 +2,7 @@ MedSupply Chain: Medicine Traceability using Hedera Hashgraph
 https://hedera-med-scan.lovable.app/
 
 presentation: https://www.canva.com/design/DAG3HnLnV0g/jIlI0nkUPxjmWO1kzsRRDQ/edit?utm_content=DAG3HnLnV0g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 pitch-deck ppt:
 https://www.canva.com/design/DAG3S-fjtDI/TJyati9LMJY9hTEpou-FcA/edit?utm_content=DAG3S-fjtDI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
